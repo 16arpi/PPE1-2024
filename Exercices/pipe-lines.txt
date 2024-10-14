@@ -1,0 +1,5 @@
+for sub in `ls`; do echo 'Annotations in' $sub ':'  >> comptes.txt; ls $sub | wc -l >> comptes.txt; done
+for sub in `ls`; do echo 'Locations in' $sub ':'  >> locations.txt; ls $sub | wc -l >> locations.txt; done
+grep "Location" 2016/*.ann | cut -d $'\t' -f 3 | sort | uniq -c | sort | tail -n15 >> classement_2016.txt
+grep "Location" 2017/*.ann | cut -d $'\t' -f 3 | sort | uniq -c | sort | tail -n15 >> classement_2017.txt
+grep "Location" 2018/*.ann | cut -d $'\t' -f 3 | sort | uniq -c | sort | tail -n15 >> classement_2018.txt

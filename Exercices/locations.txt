@@ -1,0 +1,14 @@
+Locations in Berlin :
+      70
+Locations in Kyoto :
+       7
+Locations in Paris :
+     136
+Locations in Rome :
+      95
+Locations in Taipei :
+      16
+Locations in Tokyo :
+     142
+Locations in Washington :
+     115
