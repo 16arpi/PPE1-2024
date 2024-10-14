@@ -14,3 +14,4 @@ Lors de cette séance, nous avons découvert les pipelines en bash. Il s'agit d'
 
 ### Exercices sur git
 
+Cette ligne doit rester après correction
