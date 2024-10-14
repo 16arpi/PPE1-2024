@@ -6,4 +6,9 @@ Nous nous sommes initiés à l'utilisation du programme `git`. Nous avons créé
 
 ## Mercredi 9 octobre 2024
 
+### Pipelines
+
 Lors de cette séance, nous avons découvert les pipelines en bash. Il s'agit d'une méthode permettant de renvoyer à la commande suivante le résultat de la commande précédente. Cela tire profit de l'écriture dans le flux `stdin` (pour standard input) et `stdout` (pour standard output).
+
+### Exercices sur git
+
