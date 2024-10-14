@@ -14,4 +14,3 @@ Lors de cette séance, nous avons découvert les pipelines en bash. Il s'agit d'
 
 Cette ligne doit rester après correction
 Ecriture du fichier oups.md
-Conflit depuis dépôt distant
