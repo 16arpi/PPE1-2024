@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "Annotations en 2016 :"
-cat ./ann/2016/*.ann | grep Location | wc -l
-echo "Annotations en 2017 :"
-cat ./ann/2017/*.ann | grep Location | wc -l
-echo "Annotations en 2018 :"
-cat ./ann/2018/*.ann | grep Location | wc -l
+
+for i in {2016..2018}
+do
+    echo "Annotations en" $i ":"
+    cat ./ann/$i/*.ann | grep Location | wc -l
+done
