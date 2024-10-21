@@ -23,9 +23,9 @@ Cet exercice a était compliqué pour moi car je n'ai pas compris le scénario d
 
 Découverte du langage Bash pour écrire des scripts permettant d'ordonner et de conditionner l'éxecution de commandes. Le TD permet de s'initier à l'écriture de scripts bash.
 
-Pour la question 2.b., il s'avère difficile de permettre la prise en charge de l'asterix car celui-ci est automatiquement interprété comme tous les sous-dossiers du répertoire. Si on execute le script à l'aide de l'entête `#!/bin/bash -f`, l'asterix est bien reconnu mais ça ne marche plus quand l'argument est passé à la commande `cat` car il n'y littérallement aucun fichier appelé, par exemple, `*.ann`.
+Pour la question 2.b., il s'avère difficile de permettre la prise en charge de l'asterix car celui-ci est automatiquement interprété comme tous les sous-dossiers du répertoire. Si on execute le script à l'aide de l'entête `#!/bin/bash -f`, l'asterix est bien reconnu mais ça ne marche plus quand l'argument est passé à la commande `cat` car il n'y a littérallement aucun fichier appelé, par exemple, `*.ann`.
 
-L'ajout des vérifications d'arguments consiste à vérifier d'une part que les variables ne sont pas vides (dans le cas où l'utilisateur ne mentionne rien) et, d'autre part, que les arguments numériques sont bien des nombres. Pour cela, on vérifie que les arguments numériques respecte l'expression régulière `$[0-9]+`.
+Mon ajout des vérifications d'arguments consiste à vérifier d'une part que les variables ne sont pas vides (dans le cas où l'utilisateur ne mentionne rien) et, d'autre part, que les arguments numériques sont bien des nombres. Pour cela, on vérifie que les arguments numériques respecte l'expression régulière `^[0-9]+$`.
 
 ### Script du diaporama : explication
 
