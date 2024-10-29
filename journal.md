@@ -1,5 +1,7 @@
 # Journal de bord du projet encadré
 
+Dépôt du projet de groupe : [mot](https://github.com/16arpi/mot);
+
 ## Mercredi 2 octobre 2024
 
 Nous nous sommes initiés à l'utilisation du programme `git`. Nous avons créé un dépôt initial pour notre projet final en y ajoutant le fichier de notre journal de bord. Nous nous sommes familiarisé avec la récupération de fichiers distants et l'envoie de modifications locales vers le serveur.
@@ -30,3 +32,9 @@ Mon ajout des vérifications d'arguments consiste à vérifier d'une part que le
 ### Script du diaporama : explication
 
 Ce script permet d'itérer dans un fichiers d'URLs. Le nom du fichier est donné en argument. Le script commence par vérifier s'il y a bien un argument. Puis une boucle permet de lire chaque ligne une à une. Pour chaque ligne, le script vérifie à l'aide d'une expression régulière si la ligne commence par `http://` ou `https://`, pour ainsi conclure si oui ou non l'URL semble valide. Selon si l'URL est valide, deux compteurs s'incrémentent au fur et à mesure de l'itération. À la fin, le programme renvoie le nombre de lignes comprenant des URLs valides et le nombre de lignes comprenant des URLs invalides.
+
+## Mercredi 23 octobre
+
+Ce cours nous a introduit au requêtage HTTP et à la récuparation de contenus HTML distants. Quelques programmes ont été présentés : Lynx, un navigateur web en ligne de commande, mais aussi `wget` ou `curl` permettant d'éxecuter des requêtes HTTP.
+
+Cela a aussi été l'occasion de créer un dépôt Github pour le travail de groupe. Dans notre cas, le dépôt suivant : [mot](https://github.com/16arpi/mot).
