@@ -38,3 +38,51 @@ Ce script permet d'itérer dans un fichiers d'URLs. Le nom du fichier est donné
 Ce cours nous a introduit au requêtage HTTP et à la récuparation de contenus HTML distants. Quelques programmes ont été présentés : Lynx, un navigateur web en ligne de commande, mais aussi `wget` ou `curl` permettant d'éxecuter des requêtes HTTP.
 
 Cela a aussi été l'occasion de créer un dépôt Github pour le travail de groupe. Dans notre cas, le dépôt suivant : [mot](https://github.com/16arpi/mot).
+
+## Mercredi 6 novembre
+
+Cette séance a porté sur le mini-projet à faire individuellement pour nous préparer au projet de groupe. Cette section de journal vise à répondre aux questions posées dans le diaporama.
+
+### Exercice 1
+
+**Pourquoi ne pas utiliser cat ?**
+
+Même si `cat` permet d'affichier puis piper le contenu d'un fichier vers une commande, dans notre cas son utilisation est inutile dans la mesure où l'instruction bash `<` fait se travail sans recourir à un programme supplémentaire.
+
+**Comment transformer "urls/fr.txt" en paramètre du script ?**
+
+Pour cela, il faut :
+* assigner à une variable le premier argument de notre commande (par ex `FILENAME=$1`)
+* vérifier l'existence (ou la nullité) de notre variable `$FILENAME`.
+* remplacer `urls/fr.txt` par notre variable
+
+**Comment afficher le numéro de ligne avant chaque URL (sur la même ligne) ?**
+
+On peut garder une trace écrite de l'index de la ligne en incrémentant un entier à chaque tour de boucle. Pour cela, on peut déclarer une variable I en dehors de notre boucle que l'on incrémente à chaque tour. Il y a plusieurs manières de faire (réassignation de I avec `I + 1`, instruction `++` etc.)*. Dans notre exemple nous utilisons l'instruction `((I++))` entourée de deux parenthèses : celles-ci permet une opération arithmétique sans expression du résultat de l'opération**.
+
+\* https://askubuntu.com/questions/385528/how-to-increment-a-variable-in-bash
+
+\** https://stackoverflow.com/questions/31255699/double-parenthesis-with-and-without-dollar
+
+## Exercice 2
+
+**Ajouter le code HTTP de la réponse à la requête**
+
+Le code HTTP est récupérable grâce aux métadonnées des réponses retournées par cURL. Avec l'option `-I`, cURL peut ne retourner que l'en-tête de la réponse. Celle-ci nous informe sur le code HTTP, mais aussi sur l'encodage de la page.
+
+Dans le cas du code HTTP, on peut écrire une commande bash qui envoie dans une variable :
+1. L'en-tête cURL de l'URL de la ligne en cours
+2. La première ligne de cette en-tête
+3. Le deuxième élément de cette ligne
+
+En commande bash, on obtient `curl -i $line | head -n 1 | cut -d ' ' -f 2`. On peut ainsi assigner le résultat de cette commande à une variable `HTTP_CODE` : `HTTP_CODE=$(curl -i $line | head -n 1 | cut -d ' ' -f 2)`.
+
+**Ajouter l'encodage de la page, s'il est présent**
+
+On peut repartir de l'en-tête obtenu à la question précédente. Seulement, ici la sélection de la ligne pertinente peut être récupérée grâce à une commande `grep`. On obtient ici la commande : `curl -i $line | egrep 'charset=.+\b' | cut -d '=' -f 2`.
+
+Cela nous donne l'assignation de variable : `ENCODING=$(curl -i $line | egrep 'charset=.+\b' | cut -d '=' -f 2)`. Par chance, grep ne retourne rien si il ne trouve rien. Il y aura ainsi une case vide si l'encoding n'est pas indiqué dans l'en-tête.
+
+**Récupérer le nombre de mots**
+
+Pour cela, on peut utiliser `lynx` et son option `-dump`. Ensuite, on peut isoler les mots à l'aide d'une expression régulière et `egrep` puis compter les mots grâces à `wc`. Cela nous donne `lynx -dump $line | egrep "\b[[:alnum:]]+\b" -o | wc -l`.
