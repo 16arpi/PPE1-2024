@@ -9,8 +9,16 @@ then
 fi
 
 I=0
+echo "<!DOCTYPE html>"
+echo "<html>"
+echo "<head>"
+echo "<title>Mini-projet</title>"
+echo "<meta charset=\"utf-8\" />"
+echo "</head>"
+echo "<body>"
+echo "<table>"
 
-echo "N" $'\t' "URL" $'\t' "Code HTTP" $'\t' "Encodage" $'\t' "Mots"
+echo "<tr>" "<th>n°</th>" "<th>URL</th>" "<th>Code HTTP</th>" "<th>Encodage</th>" "<th>Nombre de mots</th>" "</tr>"
 
 while read -r line
 do
@@ -22,6 +30,18 @@ do
 	ENCODING=$(curl -s -I "$line" | egrep -i '^content-type:' | egrep 'charset=[[:alnum:]-]+[:space:]' | cut -d '=' -f 2 | xargs)
 	# Comptage des mots
 	WORDS_COUNT=$(lynx -dump "$line" | egrep "\b[[:alnum:]]+\b" -o | wc -l | xargs)
-	echo $I$'\t'$line$'\t'$HTTP_CODE$'\t'$ENCODING$'\t'$WORDS_COUNT
+
+	echo "<tr>"
+	echo "<td>" $I "</td>"
+	echo "<td>" $line "</td>"
+	echo "<td>" $HTTP_CODE "</td>"
+	echo "<td>" $ENCODING "</td>"
+	echo "<td>" $WORDS_COUNT "</td>"
+	echo "</tr>"
+
 	((I++))
 done < $FILENAME
+
+echo "</table>"
+echo "</body>"
+echo "</html>"
