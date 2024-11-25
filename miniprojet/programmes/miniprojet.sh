@@ -14,9 +14,15 @@ echo "<html>"
 echo "<head>"
 echo "<title>Mini-projet</title>"
 echo "<meta charset=\"utf-8\" />"
+echo "<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css\">"
 echo "</head>"
 echo "<body>"
-echo "<table>"
+
+echo "<section class=\"section\" >"
+echo "<div class=\"container is-max-desktop\" >"
+echo "<div class=\"content\" >"
+echo "<h2 class=\"title\" >Résultat du script</h2>"
+echo "<table class=\"table\" >"
 
 echo "<tr>" "<th>n°</th>" "<th>URL</th>" "<th>Code HTTP</th>" "<th>Encodage</th>" "<th>Nombre de mots</th>" "</tr>"
 
@@ -27,7 +33,7 @@ do
 	# Code HTTP
 	HTTP_CODE=$(curl -s -I "$line" | head -n 1 | cut -d ' ' -f 2)
 	# Encodage
-	ENCODING=$(curl -s -I "$line" | egrep -i '^content-type:' | egrep 'charset=[[:alnum:]-]+[:space:]' | cut -d '=' -f 2 | xargs)
+	ENCODING=$(curl -s -I "$line" | egrep -i '^content-type:' | egrep 'charset=[[:alnum:]-]+' | cut -d '=' -f 2 | xargs)
 	# Comptage des mots
 	WORDS_COUNT=$(lynx -dump "$line" | egrep "\b[[:alnum:]]+\b" -o | wc -l | xargs)
 
@@ -43,5 +49,8 @@ do
 done < $FILENAME
 
 echo "</table>"
+echo "</div>"
+echo "</div>"
+echo "</section>"
 echo "</body>"
 echo "</html>"
